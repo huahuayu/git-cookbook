@@ -1,5 +1,24 @@
 # git-cookbook(working in progress)
 git cookbook, git烹饪书, 实用git技巧
+## 连接远程repo
+### Existing folder
+```
+cd existing_folder
+git init
+git remote add origin git@git/remote/repo.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+```
+
+### Existing Git repository
+```
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin git@git/remote/repo.git
+git push -u origin --all
+git push -u origin --tags
+```
 
 ## 实用技巧
 ### git status中文显示问题
