@@ -94,3 +94,6 @@ $ git checkout -- <file-name>
 $ git checkout -- .
 ```
 
+### commit msg
+可以设定git hooks对commit msg做格式检查，如果设定了检查后不想校验可以使用 `git commit` with `--no-verify` option 
+参考：https://stackoverflow.com/questions/39963695/how-to-remove-git-hooks   
