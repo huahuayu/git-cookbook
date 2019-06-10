@@ -1,9 +1,11 @@
 # git-cookbook(working in progress)
-git命令整理
+git cookbook, git烹饪书, 实用git技巧
+
+## git命令整理
 
 | 命令                                              | 描述                                             |
 |---------------------------------------------------|----------------------------------------------------------|
-| Local Repository                                  |                                                          |
+| **Local Repository**                                  |                                                          |
 | sudo apt-get install git                          | Install git in Linux Ubuntu                              |
 | git config –global user.name meher                | Set username as ‘meher’                                  |
 | git config –global user.email abc@gmail.com       | Set email as ‘abc@gmail.com                              |
@@ -36,7 +38,7 @@ git命令整理
 | git merge branch1                                 | Merge the brach1 to current branch e.g. master           |
 | git checkout 13802e3                              | Create new branch from previous commit 13802e3           |
 | git checkout -b branch1                           | First checkout and then create branch                    |
-| Remote repository                                 |                                                          |
+| **Remote repository**                                 |                                                          |
 | git remote add repoName https://url_of_repo       | Add remote repo with name ‘repoName’                     |
 | git remote -v                                     | Show list of added repoNames                             |
 | git remote remove repoName                        | Remove repoName from list                                |
@@ -47,7 +49,7 @@ git命令整理
 | git pull repoName branchName                      | Download and merge ‘branchName’ of repoName              |
 | git fetch repoName branchName                     | Download, but not merge repoName                         |
 
-git cookbook, git烹饪书, 实用git技巧
+
 ## 连接远程repo
 ### Existing folder
 ```
