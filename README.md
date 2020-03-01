@@ -1,13 +1,16 @@
-# git-cookbook(working in progress)
-git cookbook, git烹饪书, 实用git技巧
+[//title]:(git-cookbook)
+[//englishTitle]:(git-cookbook)
+[//category]:(git,tutorial)
+[//tags]:(git)
+[//createTime]:(20200301)
+[//lastUpdateTime]:(20200301)
+## git命令
 
-## git命令整理
-
-| 命令                                              | 描述                                             |
-|---------------------------------------------------|----------------------------------------------------------|
-| **Local Repository**                                  |                                                          |
+| 命令                                              | 描述                                                     |
+| ------------------------------------------------- | -------------------------------------------------------- |
+| **Local Repository**                              |                                                          |
 | sudo apt-get install git                          | Install git in Linux Ubuntu                              |
-| git config –global user.name meher                | Set username as ‘meher’                                  |
+| git config –global user.name alice                | Set username as ‘alice’                                  |
 | git config –global user.email abc@gmail.com       | Set email as ‘abc@gmail.com                              |
 | git config –global core.editor “vim”              | Set ‘vim’ as default text-editor                         |
 | git config –global credential.helper cache        | Cache username and password                              |
@@ -28,6 +31,8 @@ git cookbook, git烹饪书, 实用git技巧
 | git reset file1                                   | Remove file1 from stage list (i.e. back to modified)     |
 | git reset –hard 13802e3                           | Reset to previous commit with hash 13802e3               |
 | git reset HEAD –hard                              | remove all changes after last commit                     |
+| git reset –merge (git merge --abort)              | abort current merge, without losing commits              |
+| git reset HEAD~1 --soft                           | abort current commit, without losing the changes         |
 | git checkout file1                                | Remove changes from non-staged file1 to previous commit  |
 | git rm file1                                      | Delete file1 from git (but available in previous commit  |
 | git branch                                        | Show all the branches                                    |
@@ -38,7 +43,7 @@ git cookbook, git烹饪书, 实用git技巧
 | git merge branch1                                 | Merge the brach1 to current branch e.g. master           |
 | git checkout 13802e3                              | Create new branch from previous commit 13802e3           |
 | git checkout -b branch1                           | First checkout and then create branch                    |
-| **Remote repository**                                 |                                                          |
+| **Remote repository**                             |                                                          |
 | git remote add repoName https://url_of_repo       | Add remote repo with name ‘repoName’                     |
 | git remote -v                                     | Show list of added repoNames                             |
 | git remote remove repoName                        | Remove repoName from list                                |
@@ -72,31 +77,11 @@ git push -u origin --tags
 
 ## 实用技巧
 ### git status中文显示问题
-git status中文显示为8进制编码，如果要正常显示，可使用命令`git config --global core.quotepath false`即可  
-``` zsh
-shiming@pro ➜  algorithm git:(master) ✗ git status
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes to be committed:
-  (use "git reset HEAD <file>..." to unstage)
-
-	new file:   "\351\235\242\350\257\225\347\234\237\351\242\230/\345\205\224\345\255\220\347\271\201\346\256\226/solution.go"
-	new file:   "\351\235\242\350\257\225\347\234\237\351\242\230/\345\205\224\345\255\220\347\271\201\346\256\226/solution_test.go"
-	new file:   "\351\235\242\350\257\225\347\234\237\351\242\230/\345\256\236\347\216\260\346\240\210\346\225\260\346\215\256\347\273\223\346\236\204/solution.go"
-
-shiming@pro ➜  algorithm git:(master) ✗ git config --global core.quotepath false
-shiming@pro ➜  algorithm git:(master) ✗ git status
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes to be committed:
-  (use "git reset HEAD <file>..." to unstage)
-
-	new file:   面试真题/兔子繁殖/solution.go
-	new file:   面试真题/兔子繁殖/solution_test.go
-	new file:   面试真题/实现栈数据结构/solution.go
+git status中文显示为8进制编码，如果要正常显示，可使用命令
 ```
+git config --global core.quotepath false
+```  
+
 
 ### 回退操作
 **场景一：**    
@@ -144,6 +129,20 @@ $ git checkout -- <file-name>
 $ git checkout -- .
 ```
 
+**场景五：**  
+取消当前merge  
+
+git版本 >= 1.6.1  
+``` 
+git reset –merge 
+```
+
+或者git版本 >= 1.7.4  
+```
+git merge --abort
+```
+
+两者等价
+
 ### commit msg
-可以设定git hooks对commit msg做格式检查，如果设定了检查后不想校验可以使用 `git commit` with `--no-verify` option 
-参考：https://stackoverflow.com/questions/39963695/how-to-remove-git-hooks   
+[git commit规范](https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html) 
